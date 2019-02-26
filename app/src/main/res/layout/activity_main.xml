@@ -14,6 +14,7 @@
         android:layout_marginTop="10sp"
         android:fontFamily="@font/faster_one"
         android:text="CALCULATION"
+        android:textAlignment="center"
         android:textColor="#ffffff"
         android:textSize="24dp"
         android:textStyle="bold"
@@ -35,11 +36,10 @@
         tools:layout_editor_absoluteY="51dp">
 
         <TextView
-            android:id="@+id/textViewRersult"
+            android:id="@+id/textViewResult"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="0"
             android:textAlignment="center"
             android:textSize="65sp"
             android:textStyle="bold" />
@@ -86,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="7"
+                android:tag="7"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -95,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="8"
+                android:tag="8"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -104,6 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="9"
+                android:tag="9"
                 android:textSize="30sp"
                 android:textStyle="bold" />
         </TableRow>
@@ -119,6 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="4"
+                android:tag="4"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -128,6 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="5"
+                android:tag="5"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -137,6 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="6"
+                android:tag="6"
                 android:textSize="30sp"
                 android:textStyle="bold" />
         </TableRow>
@@ -152,6 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="1"
+                android:tag="1"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -161,6 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="2"
+                android:tag="2"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -170,6 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="3"
+                android:tag="3"
                 android:textSize="30sp"
                 android:textStyle="bold" />
         </TableRow>
@@ -185,6 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="0"
+                android:tag="0"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -194,6 +204,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="."
+                android:tag="."
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -203,6 +214,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="-"
+                android:tag="-"
                 android:textSize="30sp"
                 android:textStyle="bold" />
         </TableRow>
@@ -217,6 +229,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Clr"
+                android:tag="clr"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:textColor="#ffa502"/>
@@ -227,6 +240,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Gnr"
+                android:tag="gnr"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:textColor="#27ae60"
@@ -238,6 +252,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Ext"
+                android:tag="ext"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:textColor="#ffa502"/>
@@ -268,8 +283,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="="
+            android:tag="="
             android:textSize="28sp"
-
             android:textStyle="bold" />
 
         <Button
@@ -279,6 +294,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Show"
+            android:tag="show"
             android:textColor="#ffa502"
             android:textSize="28sp"
             android:textStyle="bold" />
