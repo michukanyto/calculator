@@ -6,11 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import model.RandomOperation;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView textViewResult;
+    TextView textViewOperation;
     Intent myIntent;
+    RandomOperation operation;
     Button[] buttons = new Button[16];
     int buttonsWidgets[] = {R.id.button0,R.id.button1,R.id.button2,R.id.button3,R.id.button4,R.id.button5,R.id.button6,R.id.button7,R.id.button8,R.id.button9,
                     R.id.buttonClear,R.id.buttonDot,R.id.buttonEqual,R.id.buttonGenerate,R.id.buttonLess,R.id.buttonQuit,R.id.buttonResults};
@@ -30,7 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             buttons[x] = findViewById(buttonsWidgets[x]);
             buttons[x].setOnClickListener(this);
         }
-
+        operation = new RandomOperation();
+        textViewOperation = findViewById(R.id.textViewOperation);
     }
 
 
@@ -78,10 +84,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 textViewResult.append("9");
                 break;
             case R.id.buttonGenerate:
-                textViewResult.append("9");
+                operation.launchOperation();
+                textViewOperation.setText(operation.toString());
+                Toast.makeText(this,operation.toString(),Toast.LENGTH_LONG).show();
                 break;
             case R.id.buttonLess:
-                textViewResult.append("9");
+                textViewResult.append("-");
                 break;
             case R.id.buttonQuit:
                 finish();
