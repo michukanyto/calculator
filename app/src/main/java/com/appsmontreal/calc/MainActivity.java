@@ -8,7 +8,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 import model.RandomOperation;
+import model.Validate;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -16,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView textViewOperation;
     Intent myIntent;
     RandomOperation operation;
+    Validate validate;
     Button[] buttons = new Button[16];
     int buttonsWidgets[] = {R.id.button0,R.id.button1,R.id.button2,R.id.button3,R.id.button4,R.id.button5,R.id.button6,R.id.button7,R.id.button8,R.id.button9,
                     R.id.buttonClear,R.id.buttonDot,R.id.buttonEqual,R.id.buttonGenerate,R.id.buttonLess,R.id.buttonQuit,R.id.buttonResults};
@@ -81,12 +85,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 textViewResult.append(".");
                 break;
             case R.id.buttonEqual:
-                textViewResult.append("9");
+                validate = new Validate(Double.parseDouble(textViewResult.getText().toString()),operation.operationResult());
+                Toast.makeText(this,Boolean.toString(validate.validateOperation()) + operation.operationResult(),Toast.LENGTH_LONG).show();
                 break;
             case R.id.buttonGenerate:
                 operation.launchOperation();
                 textViewOperation.setText(operation.toString());
-                Toast.makeText(this,operation.toString(),Toast.LENGTH_LONG).show();
+                textViewResult.setText("");
                 break;
             case R.id.buttonLess:
                 textViewResult.append("-");

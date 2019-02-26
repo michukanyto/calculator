@@ -1,5 +1,6 @@
 package model;
 
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public class RandomOperation {
@@ -8,6 +9,8 @@ public class RandomOperation {
     private String operator;
     private String[] operators = {"+","-","*","/"};
     Random random = new Random();
+    DecimalFormat df = new DecimalFormat("#.0");
+
 
 
     public int getNumber1() {
@@ -39,6 +42,27 @@ public class RandomOperation {
         return number1 +"     " + operator + "     " + number2 + "     =     ?";
     }
 
+
+    public double operationResult() {
+        double answer = 0;
+        switch(operator){
+            case "+":
+                answer = number1 + number2;
+                break;
+            case "-":
+                answer = number1 - number2;
+                break;
+            case "*":
+                answer = number1 * number2;
+                break;
+            case "/":
+                answer = divisionAnswer();
+                break;
+        }
+        return answer;
+    }
+
+
     public void launchOperation(){
         setNumber1(random.nextInt(10));
         setNumber2(random.nextInt(10));
@@ -47,7 +71,16 @@ public class RandomOperation {
         while (number2 == 0 && operator.equals("/")){   //Handling division by 0
             setNumber2(random.nextInt(10));
         }
-
-
     }
+
+    private double divisionAnswer(){ //Handling decimal part from division result
+        double answer = 0;
+        String divisionAnswer;
+        answer = ((double)number1 / (double)number2);
+        divisionAnswer = df.format(answer);
+        answer = Double.parseDouble(divisionAnswer);
+
+        return (answer);
+    }
+
 }
