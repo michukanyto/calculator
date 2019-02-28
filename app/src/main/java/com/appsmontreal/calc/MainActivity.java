@@ -3,6 +3,7 @@ package com.appsmontreal.calc;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,12 +24,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String KEY = "OK";
     TextView textViewResult;
     TextView textViewOperation;
+    TextView textViewCounter;
     Intent myIntent;
     RandomOperation operation;
     Validate validate;
     ArrayList<Answer> answers;
     Sound play;
     Animate animate;
+    CountDownTimer countDownTimer;
+    int counter;
     Button[] buttons = new Button[17];
     int buttonsWidgets[] = {R.id.button0,R.id.button1,R.id.button2,R.id.button3,R.id.button4,R.id.button5,R.id.button6,R.id.button7,R.id.button8,R.id.button9,
                     R.id.buttonClear,R.id.buttonDot,R.id.buttonEqual,R.id.buttonGenerate,R.id.buttonLess,R.id.buttonQuit,R.id.buttonResults};
@@ -50,9 +54,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         operation = new RandomOperation();
         textViewOperation =(TextView) findViewById(R.id.textViewOperation);
+        textViewCounter = (TextView) findViewById(R.id.textViewCounter);
         answers = new ArrayList<Answer>();
         play = new Sound(this);
         buttons[12].setEnabled(false);
+        counter = 9;
     }
 
 
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     buttons[13].setEnabled(true);
                     animate = new Animate(validate.validateOperation());
                     animate.displayPoints(textViewResult);
+                    countDownTimer.cancel();
                 }catch (Exception e){
                     Toast.makeText(this,"Please enter a result",Toast.LENGTH_SHORT).show();
                 }
@@ -94,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 buttons[12].setEnabled(true);
                 buttons[13].setEnabled(false);
                 textViewResult.setTextColor(Color.GRAY);
+                textViewCounter.setVisibility(View.VISIBLE);
+                countDownDisplay();
                 break;
 
             case R.id.buttonLess: textViewResult.append("-"); break;
@@ -118,6 +127,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             play.soundWrongAnswer();
         }
         buttons[12].setEnabled(false);
+    }
+
+
+    public void countDownDisplay(){
+        countDownTimer = new CountDownTimer(9000, 1000){
+            public void onTick(long millisUntilFinished){
+                textViewCounter.setText(String.valueOf(counter--));
+                if(counter == 0){
+                    buttons[12].setEnabled(false);
+                    buttons[13].setEnabled(true);
+                    validate = new Validate(Double.parseDouble("-10"), operation.operationResult());
+                    checkAnswer();
+                    answers.add(new Answer(validate, operation.toString(), validate.validateOperation()));
+                }
+            }
+            public  void onFinish(){
+                textViewCounter.setText("-");
+            }
+        }.start();
+
+            counter = 9;
+
     }
 
 }

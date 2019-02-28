@@ -1,6 +1,7 @@
 package com.appsmontreal.calc;
 
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.widget.TextView;
 
 public class Animate {
@@ -11,6 +12,7 @@ public class Animate {
     }
 
     private boolean answer;
+    private int counter;
 
     public Animate(boolean answer) {
         this.answer = answer;
@@ -30,5 +32,7 @@ public class Animate {
 //        textViewPoints.getAnimation().cancel();
 
     }
+
+
 
 }
