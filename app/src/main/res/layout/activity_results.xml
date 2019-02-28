@@ -4,19 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1e272e"
     tools:context=".ResultsActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="141dp"
-        android:layout_marginTop="292dp"
-        android:layout_marginEnd="212dp"
-        android:layout_marginBottom="420dp"
-        android:text="hello......"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:background="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextResult"
+        android:layout_width="266dp"
+        android:layout_height="203dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="72dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graph" />
+
+    <TextView
+        android:id="@+id/textViewPercentage"
+        android:layout_width="206dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="127dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="127dp"
+        android:text=""
+        android:textColor="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextResult" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="79dp"
+        android:text="back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSend"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPercentage" />
+
+    <Button
+        android:id="@+id/buttonSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="79dp"
+        android:text="send"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonBack"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPercentage" />
 </android.support.constraint.ConstraintLayout>
+
+
+

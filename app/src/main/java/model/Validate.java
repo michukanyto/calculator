@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public class Validate {
+public class Validate implements Serializable {
     private double userResult;
     private double machineResult;
 
@@ -26,4 +27,10 @@ public class Validate {
 
     }
 
+    @Override
+    public String toString() {
+        return "Correct answer => " + machineResult + "\n" +
+                "Your answer => " + userResult;
+
+    }
 }
