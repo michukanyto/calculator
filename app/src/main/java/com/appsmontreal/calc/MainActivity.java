@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Validate validate;
     ArrayList<Answer> answers;
     Sound play;
+    Animate animate;
     Button[] buttons = new Button[17];
     int buttonsWidgets[] = {R.id.button0,R.id.button1,R.id.button2,R.id.button3,R.id.button4,R.id.button5,R.id.button6,R.id.button7,R.id.button8,R.id.button9,
                     R.id.buttonClear,R.id.buttonDot,R.id.buttonEqual,R.id.buttonGenerate,R.id.buttonLess,R.id.buttonQuit,R.id.buttonResults};
@@ -41,16 +43,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void initialize() {
-        textViewResult = findViewById(R.id.textViewResult);
+        textViewResult =(TextView) findViewById(R.id.textViewResult);
         for (int x = 0; x < buttons.length; x++){
             buttons[x] = findViewById(buttonsWidgets[x]);
             buttons[x].setOnClickListener(this);
         }
         operation = new RandomOperation();
-        textViewOperation = findViewById(R.id.textViewOperation);
+        textViewOperation =(TextView) findViewById(R.id.textViewOperation);
         answers = new ArrayList<Answer>();
         play = new Sound(this);
-        buttons[12].setVisibility(View.INVISIBLE);
+        buttons[12].setEnabled(false);
     }
 
 
@@ -72,19 +74,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonDot: textViewResult.append("."); break;
 
             case R.id.buttonEqual:
-                validate = new Validate(Double.parseDouble(textViewResult.getText().toString()),operation.operationResult());
-                checkAnswer();
-                Toast.makeText(this,Boolean.toString(validate.validateOperation()) + "    " + operation.operationResult(),Toast.LENGTH_LONG).show();
-                answers.add(new Answer(validate,operation.toString(),validate.validateOperation()));
-                buttons[13].setVisibility(View.VISIBLE);
+                try {
+                    validate = new Validate(Double.parseDouble(textViewResult.getText().toString()), operation.operationResult());
+                    checkAnswer();
+                    Toast.makeText(this, Boolean.toString(validate.validateOperation()) + "    " + operation.operationResult(), Toast.LENGTH_LONG).show();
+                    answers.add(new Answer(validate, operation.toString(), validate.validateOperation()));
+                    buttons[13].setEnabled(true);
+                    animate = new Animate(validate.validateOperation());
+                    animate.displayPoints(textViewResult);
+                }catch (Exception e){
+                    Toast.makeText(this,"Please enter a result",Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.buttonGenerate:
                 operation.launchOperation();
                 textViewOperation.setText(operation.toString());
                 textViewResult.setText("");
-                buttons[12].setVisibility(View.VISIBLE);
-                buttons[13].setVisibility(View.INVISIBLE);
+                buttons[12].setEnabled(true);
+                buttons[13].setEnabled(false);
+                textViewResult.setTextColor(Color.GRAY);
                 break;
 
             case R.id.buttonLess: textViewResult.append("-"); break;
@@ -108,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else{
             play.soundWrongAnswer();
         }
-        buttons[12].setVisibility(View.INVISIBLE);
+        buttons[12].setEnabled(false);
     }
 
 }

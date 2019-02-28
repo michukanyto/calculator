@@ -28,17 +28,17 @@ public class Email extends ResultsActivity {
         Intent intentEmail = new Intent(Intent.ACTION_SENDTO);
         intentEmail.setType("message/rfc822");
         intentEmail.setData(Uri.parse("mailto:"));
-        intentEmail.putExtra(Intent.EXTRA_EMAIL  , new String[]{""});
+        intentEmail.putExtra(Intent.EXTRA_EMAIL  , new String[]{"escobar.marlon@gmail.com"});
         intentEmail.putExtra(Intent.EXTRA_SUBJECT, "Calculator Score");
         intentEmail.putExtra(Intent.EXTRA_TEXT   , "CALCULATOR SCORE\n" +
-                                                           "=======================" +
-                                                            percentage.getText().toString() + "\n\n" +
-                                                            answerResume.getText().toString() + "\n\n"+ graph.takeSnapshot());
+                "=======================\n" +
+                textViewPercentage.getText().toString() + "\n\n" +
+                editTextResult.getText().toString() + "\n\n");
 
         try {
             startActivity(Intent.createChooser(intentEmail, "Send mail..."));
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(context, "Email service was not found in this phone.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Email service was not found in this phone.", Toast.LENGTH_SHORT).show();
         }
     }
 }

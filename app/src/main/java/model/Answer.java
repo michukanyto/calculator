@@ -38,4 +38,10 @@ public class Answer implements Serializable {
     public void setPoint(boolean point) {
         this.point = point;
     }
+
+    @Override
+    public String toString() {
+        return question + "\n " + answers.toString() + " : "+ point + "\n\n";
+
+    }
 }

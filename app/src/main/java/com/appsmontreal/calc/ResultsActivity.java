@@ -108,10 +108,10 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         Intent intentEmail = new Intent(Intent.ACTION_SENDTO);
         intentEmail.setType("message/rfc822");
         intentEmail.setData(Uri.parse("mailto:"));
-        intentEmail.putExtra(Intent.EXTRA_EMAIL  , new String[]{""});
+        intentEmail.putExtra(Intent.EXTRA_EMAIL  , new String[]{"escobar.marlon@gmail.com"});
         intentEmail.putExtra(Intent.EXTRA_SUBJECT, "Calculator Score");
         intentEmail.putExtra(Intent.EXTRA_TEXT   , "CALCULATOR SCORE\n" +
-                "=======================" +
+                "=======================\n" +
                 textViewPercentage.getText().toString() + "\n\n" +
                 editTextResult.getText().toString() + "\n\n");
 

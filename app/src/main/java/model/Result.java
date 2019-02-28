@@ -1,8 +1,6 @@
 package model;
 
 import android.util.Log;
-import android.widget.Toast;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -12,7 +10,7 @@ public class Result {
     private int wrongAnswer = 0;
     private double percentageCorrectAnswer = 0;
     private double percentageWrongAnswer = 0;
-    private String questionResume="";
+    private String questionResume = "";
     public Result(ArrayList<Answer> answers) {
         this.answers = answers;
     }
@@ -33,7 +31,7 @@ public class Result {
 
     public void getScore(){
         for(int x = 0; x < answers.size();x++ ){
-            questionResume += answers.get(x).getQuestion() + "\n" + answers.get(x).getAnswers().toString() + " : "+ Boolean.toString(answers.get(x).getPoint()) + "\n\n";
+            questionResume += answers.get(x).toString();
             Log.i("Answer was       :", Boolean.toString(answers.get(x).getPoint()));
             if (answers.get(x).getPoint()){
                 correctAnswer++;
@@ -52,7 +50,7 @@ public class Result {
     @Override
     public String toString() {
         return "correct Answers   =  " + df.format(percentageCorrectAnswer) + " %\n\n" +
-                ", wrong Answers   =  " + df.format(percentageWrongAnswer)+ " %" ;
+                "wrong Answers   =  " + df.format(percentageWrongAnswer)+ " %";
 
     }
 }

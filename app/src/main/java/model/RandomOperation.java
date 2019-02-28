@@ -78,9 +78,9 @@ public class RandomOperation {
         String divisionAnswer;
         answer = ((double)number1 / (double)number2);
         divisionAnswer = df.format(answer);
-        answer = Double.parseDouble(divisionAnswer);
+        answer = Double.valueOf(divisionAnswer);
 
-        return (answer);
+        return answer;
     }
 
 }
