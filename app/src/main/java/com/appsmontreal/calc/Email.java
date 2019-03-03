@@ -1,5 +1,6 @@
 package com.appsmontreal.calc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,7 +11,7 @@ import android.widget.Toast;
 import com.appsmontreal.calc.ResultsActivity;
 import com.jjoe64.graphview.GraphView;
 
-public class Email extends ResultsActivity {
+public class Email  {
 
     private Context context;
     private TextView percentage;
@@ -24,7 +25,7 @@ public class Email extends ResultsActivity {
         this.graph = graph;
     }
 
-    public void sendEmail(){
+    public void sendEmail(Activity caller){
         Intent intentEmail = new Intent(Intent.ACTION_SENDTO);
         intentEmail.setType("message/rfc822");
         intentEmail.setData(Uri.parse("mailto:"));
@@ -32,13 +33,13 @@ public class Email extends ResultsActivity {
         intentEmail.putExtra(Intent.EXTRA_SUBJECT, "Calculator Score");
         intentEmail.putExtra(Intent.EXTRA_TEXT   , "CALCULATOR SCORE\n" +
                 "=======================\n" +
-                textViewPercentage.getText().toString() + "\n\n" +
-                editTextResult.getText().toString() + "\n\n");
+                percentage.getText().toString() + "\n\n" +
+                answerResume.getText().toString() + "\n\n");
 
         try {
-            startActivity(Intent.createChooser(intentEmail, "Send mail..."));
+            caller.startActivity(Intent.createChooser(intentEmail, "Send mail..."));
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this, "Email service was not found in this phone.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(caller, "Email service was not found in this phone.", Toast.LENGTH_SHORT).show();
         }
     }
 }

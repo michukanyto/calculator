@@ -55,7 +55,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         printInfo();
         showGraph();
         play = new Sound(this);
-//        email = new Email(this,textViewPercentage,editTextResult,graph);
+        email = new Email(this,textViewPercentage,editTextResult,graph);
 
     }
 
@@ -96,29 +96,36 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.buttonBack: finish(); play.soundGoBack(); break;
-            case R.id.buttonSend: sendEmail(); play.soundGoForward(); break;
+            case R.id.buttonBack:
+                finish();
+                play.soundGoBack();
+                break;
+            case R.id.buttonSend:
+//                sendEmail();
+                email.sendEmail(this);
+                play.soundGoForward();
+                break;
             default: break;
         }
 
     }
 
-
-    public void sendEmail(){
-        Intent intentEmail = new Intent(Intent.ACTION_SENDTO);
-        intentEmail.setType("message/rfc822");
-        intentEmail.setData(Uri.parse("mailto:"));
-        intentEmail.putExtra(Intent.EXTRA_EMAIL  , new String[]{"escobar.marlon@gmail.com"});
-        intentEmail.putExtra(Intent.EXTRA_SUBJECT, "Calculator Score");
-        intentEmail.putExtra(Intent.EXTRA_TEXT   , "CALCULATOR SCORE\n" +
-                "=======================\n" +
-                textViewPercentage.getText().toString() + "\n\n" +
-                editTextResult.getText().toString() + "\n\n");
-
-        try {
-            startActivity(Intent.createChooser(intentEmail, "Send mail..."));
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this, "Email service was not found in this phone.", Toast.LENGTH_SHORT).show();
-        }
-    }
+//
+//    public void sendEmail(){
+//        Intent intentEmail = new Intent(Intent.ACTION_SENDTO);
+//        intentEmail.setType("message/rfc822");
+//        intentEmail.setData(Uri.parse("mailto:"));
+//        intentEmail.putExtra(Intent.EXTRA_EMAIL  , new String[]{""});
+//        intentEmail.putExtra(Intent.EXTRA_SUBJECT, "Calculator Score");
+//        intentEmail.putExtra(Intent.EXTRA_TEXT   , "CALCULATOR SCORE\n" +
+//                "=======================\n" +
+//                textViewPercentage.getText().toString() + "\n\n" +
+//                editTextResult.getText().toString() + "\n\n");
+//
+//        try {
+//            startActivity(Intent.createChooser(intentEmail, "Send mail..."));
+//        } catch (android.content.ActivityNotFoundException ex) {
+//            Toast.makeText(this, "Email service was not found in this phone.", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }

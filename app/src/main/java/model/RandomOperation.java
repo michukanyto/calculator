@@ -9,7 +9,7 @@ public class RandomOperation {
     private String operator;
     private String[] operators = {"+","-","*","/"};
     Random random = new Random();
-    DecimalFormat df = new DecimalFormat("#.0");
+    DecimalFormat df = new DecimalFormat("#,0");
 
 
 

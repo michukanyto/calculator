@@ -66,19 +66,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         switch(v.getId()){
-            case R.id.button0: textViewResult.append("0"); break;
-            case R.id.button1: textViewResult.append("1"); break;
-            case R.id.button2: textViewResult.append("2"); break;
-            case R.id.button3: textViewResult.append("3"); break;
-            case R.id.button4: textViewResult.append("4"); break;
-            case R.id.button5: textViewResult.append("5"); break;
-            case R.id.button6: textViewResult.append("6"); break;
-            case R.id.button7: textViewResult.append("7"); break;
-            case R.id.button8: textViewResult.append("8"); break;
-            case R.id.button9: textViewResult.append("9"); break;
-            case R.id.buttonClear: textViewResult.setText(""); break;
-            case R.id.buttonDot: textViewResult.append("."); break;
-
+            case R.id.button0:
+                textViewResult.append("0");
+                break;
+            case R.id.button1:
+                textViewResult.append("1");
+                break;
+            case R.id.button2:
+                textViewResult.append("2");
+                break;
+            case R.id.button3:
+                textViewResult.append("3");
+                break;
+            case R.id.button4:
+                textViewResult.append("4"); break;
+            case R.id.button5: textViewResult.append("5");
+                break;
+            case R.id.button6:
+                textViewResult.append("6");
+                break;
+            case R.id.button7:
+                textViewResult.append("7");
+                break;
+            case R.id.button8:
+                textViewResult.append("8");
+                break;
+            case R.id.button9:
+                textViewResult.append("9");
+                break;
+            case R.id.buttonClear:
+                textViewResult.setText("");
+                break;
+            case R.id.buttonDot: textViewResult.append(".");
+            break;
             case R.id.buttonEqual:
                 try {
                     validate = new Validate(Double.parseDouble(textViewResult.getText().toString()), operation.operationResult());
@@ -93,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this,"Please enter a result",Toast.LENGTH_SHORT).show();
                 }
                 break;
-
             case R.id.buttonGenerate:
                 operation.launchOperation();
                 textViewOperation.setText(operation.toString());
@@ -104,20 +123,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 textViewCounter.setVisibility(View.VISIBLE);
                 countDownDisplay();
                 break;
-
-            case R.id.buttonLess: textViewResult.append("-"); break;
-            case R.id.buttonQuit: finish(); play.soundExit(); break;
-
+            case R.id.buttonLess:
+                textViewResult.append("-");
+                break;
+            case R.id.buttonQuit:
+                finish();
+                play.soundExit();
+                break;
             case R.id.buttonResults:
                 play.soundGoForward();
                 myIntent = new Intent(this,ResultsActivity.class);
                 myIntent.putExtra(KEY,(ArrayList<Answer>) answers);
                 startActivity(myIntent);
                 break;
-
-             default: break;
+             default:
+                 break;
         }
     }
+
 
     public void checkAnswer(){
         if (validate.validateOperation()){
@@ -130,24 +153,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+
     public void countDownDisplay(){
         countDownTimer = new CountDownTimer(9000, 1000){
             public void onTick(long millisUntilFinished){
                 textViewCounter.setText(String.valueOf(counter--));
-                if(counter == 0){
+                if (counter == 2){
+                    textViewCounter.setTextColor(Color.RED);
+                }
+                else if(counter == 0){
                     buttons[12].setEnabled(false);
                     buttons[13].setEnabled(true);
-                    validate = new Validate(Double.parseDouble("-10"), operation.operationResult());
+                    validate = new Validate(Double.parseDouble("-10"), operation.operationResult());//-10 always will be a wrong answer
                     checkAnswer();
                     answers.add(new Answer(validate, operation.toString(), validate.validateOperation()));
                 }
+
             }
             public  void onFinish(){
-                textViewCounter.setText("-");
+                textViewCounter.setText("0");
             }
         }.start();
 
             counter = 9;
+            textViewCounter.setTextColor(Color.WHITE);
 
     }
 

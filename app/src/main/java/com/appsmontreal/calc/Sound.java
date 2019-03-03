@@ -41,6 +41,15 @@ public class Sound {
         playSound(mediaPlayer);
     }
 
+    public void tictacCountDown(){
+        mediaPlayer = MediaPlayer.create(context,R.raw.tictac);
+        playSound(mediaPlayer);
+    }
+
+    public void stopSound(){
+        mediaPlayer.stop();
+    }
+
     private void playSound(MediaPlayer play){
         play.start();
         play.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
