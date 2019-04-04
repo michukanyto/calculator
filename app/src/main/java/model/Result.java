@@ -11,6 +11,7 @@ public class Result {
     private double percentageCorrectAnswer = 0;
     private double percentageWrongAnswer = 0;
     private String questionResume = "";
+
     public Result(ArrayList<Answer> answers) {
         this.answers = answers;
     }

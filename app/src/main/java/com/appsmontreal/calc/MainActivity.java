@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
@@ -33,9 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Animate animate;
     CountDownTimer countDownTimer;
     int counter;
-    Button[] buttons = new Button[17];
+    Button[] buttons = new Button[18];
     int buttonsWidgets[] = {R.id.button0,R.id.button1,R.id.button2,R.id.button3,R.id.button4,R.id.button5,R.id.button6,R.id.button7,R.id.button8,R.id.button9,
-                    R.id.buttonClear,R.id.buttonDot,R.id.buttonEqual,R.id.buttonGenerate,R.id.buttonLess,R.id.buttonQuit,R.id.buttonResults};
+                    R.id.buttonClear,R.id.buttonDot,R.id.buttonEqual,R.id.buttonGenerate,R.id.buttonLess,R.id.buttonQuit,R.id.buttonResults,R.id.buttonSave};
 
 
     @Override
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     validate = new Validate(Double.parseDouble(textViewResult.getText().toString()), operation.operationResult());
                     checkAnswer();
                     Toast.makeText(this, Boolean.toString(validate.validateOperation()) + "    " + operation.operationResult(), Toast.LENGTH_LONG).show();
-                    answers.add(new Answer(validate, operation.toString(), validate.validateOperation()));
+                    answers.add(new Answer(validate, operation.toString(), validate.validateOperation(),(10 - counter)));
                     buttons[13].setEnabled(true);
                     animate = new Animate(validate.validateOperation());
                     animate.displayPoints(textViewResult);
@@ -136,6 +137,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 myIntent.putExtra(KEY,(ArrayList<Answer>) answers);
                 startActivity(myIntent);
                 break;
+            case R.id.buttonSave:
+                Log.i("Save Button", ": you're here");
+                play.soundExit();
+                break;
              default:
                  break;
         }
@@ -166,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     buttons[13].setEnabled(true);
                     validate = new Validate(Double.parseDouble("-10"), operation.operationResult());//-10 always will be a wrong answer
                     checkAnswer();
-                    answers.add(new Answer(validate, operation.toString(), validate.validateOperation()));
+                    answers.add(new Answer(validate, operation.toString(), validate.validateOperation(),10));
                 }
 
             }
