@@ -34,9 +34,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Animate animate;
     CountDownTimer countDownTimer;
     int counter;
+    boolean activeButtonPlay;
     Button[] buttons = new Button[18];
     int buttonsWidgets[] = {R.id.button0,R.id.button1,R.id.button2,R.id.button3,R.id.button4,R.id.button5,R.id.button6,R.id.button7,R.id.button8,R.id.button9,
-                    R.id.buttonClear,R.id.buttonDot,R.id.buttonEqual,R.id.buttonGenerate,R.id.buttonLess,R.id.buttonQuit,R.id.buttonResults,R.id.buttonSave};
+                    R.id.buttonClear,R.id.buttonDot,R.id.buttonEqual,R.id.buttonPlay,R.id.buttonLess,R.id.buttonQuit,R.id.buttonResults,R.id.buttonSave};
+
+    public enum buttonPlayState{
+        PLAY,
+        STOP
+    }
 
 
     @Override
@@ -59,7 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         answers = new ArrayList<Answer>();
         play = new Sound(this);
         buttons[12].setEnabled(false);
-        counter = 9;
+        counter = 10;
+        activeButtonPlay = false;
     }
 
 
@@ -105,8 +112,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     validate = new Validate(Double.parseDouble(textViewResult.getText().toString()), operation.operationResult());
                     checkAnswer();
                     Toast.makeText(this, Boolean.toString(validate.validateOperation()) + "    " + operation.operationResult(), Toast.LENGTH_LONG).show();
-                    answers.add(new Answer(validate, operation.toString(), validate.validateOperation(),(10 - counter)));
-                    buttons[13].setEnabled(true);
+                    answers.add(new Answer(validate, operation.toString(), validate.validateOperation(),(9 - counter)));
+//                    buttons[13].setEnabled(true);
                     animate = new Animate(validate.validateOperation());
                     animate.displayPoints(textViewResult);
                     countDownTimer.cancel();
@@ -114,15 +121,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this,"Please enter a result",Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case R.id.buttonGenerate:
-                operation.launchOperation();
-                textViewOperation.setText(operation.toString());
-                textViewResult.setText("");
-                buttons[12].setEnabled(true);
-                buttons[13].setEnabled(false);
-                textViewResult.setTextColor(Color.GRAY);
-                textViewCounter.setVisibility(View.VISIBLE);
-                countDownDisplay();
+            case R.id.buttonPlay:
+
+//                    operation.launchOperation();
+//                    textViewOperation.setText(operation.toString());
+//                    textViewResult.setText("");
+//                    buttons[12].setEnabled(true);
+//                    countDownDisplay();
+
+//                    buttons[13].setEnabled(false);
+
+                if(activeButtonPlay){
+                    buttons[13].setText(buttonPlayState.PLAY.name());
+                    buttons[13].setTextColor(Color.GREEN);
+                    activeButtonPlay = false;
+                    countDownTimer.cancel();
+                }else {
+                    operation.launchOperation();
+                    textViewOperation.setText(operation.toString());
+                    textViewResult.setText("");
+                    buttons[12].setEnabled(true);
+//                    buttons[13].setEnabled(false);
+                    textViewResult.setTextColor(Color.GRAY);
+                    textViewCounter.setVisibility(View.VISIBLE);
+                    buttons[13].setText(buttonPlayState.STOP.name());
+                    buttons[13].setTextColor(Color.RED);
+                    countDownDisplay();
+                    activeButtonPlay = true;
+                }
                 break;
             case R.id.buttonLess:
                 textViewResult.append("-");
@@ -180,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }.start();
 
-            counter = 9;
+            counter = 10;
             textViewCounter.setTextColor(Color.WHITE);
 
     }

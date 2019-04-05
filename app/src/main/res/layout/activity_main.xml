@@ -234,12 +234,12 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/buttonGenerate"
+                android:id="@+id/buttonPlay"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:tag="gnr"
-                android:text="Gnr"
+                android:text="PLAY"
                 android:textColor="#27ae60"
                 android:textSize="30sp"
                 android:textStyle="bold" />
