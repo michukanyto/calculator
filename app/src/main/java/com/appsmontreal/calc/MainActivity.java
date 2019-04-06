@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewCounter = (TextView) findViewById(R.id.textViewCounter);
         answers = new ArrayList<Answer>();
         play = new Sound(this);
-        buttons[12].setEnabled(false);
+//        buttons[12].setEnabled(false);
         counter = 10;
         activeButtonPlay = false;
     }
@@ -115,32 +115,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     answers.add(new Answer(validate, operation.toString(), validate.validateOperation(),(9 - counter)));
 //                    buttons[13].setEnabled(true);
                     animate = new Animate(validate.validateOperation());
-                    animate.displayPoints(textViewResult);
+                    animate.displayPoints(textViewResult);/////////message on display result
                     countDownTimer.cancel();
+                    countDownDisplay();
+
                 }catch (Exception e){
                     Toast.makeText(this,"Please enter a result",Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.buttonPlay:
 
-//                    operation.launchOperation();
-//                    textViewOperation.setText(operation.toString());
-//                    textViewResult.setText("");
-//                    buttons[12].setEnabled(true);
-//                    countDownDisplay();
-
 //                    buttons[13].setEnabled(false);
-
                 if(activeButtonPlay){
                     buttons[13].setText(buttonPlayState.PLAY.name());
                     buttons[13].setTextColor(Color.GREEN);
                     activeButtonPlay = false;
                     countDownTimer.cancel();
                 }else {
-                    operation.launchOperation();
-                    textViewOperation.setText(operation.toString());
+//                    operation.launchOperation();
+//                    textViewOperation.setText(operation.toString());
                     textViewResult.setText("");
-                    buttons[12].setEnabled(true);
+//                    buttons[12].setEnabled(true);
 //                    buttons[13].setEnabled(false);
                     textViewResult.setTextColor(Color.GRAY);
                     textViewCounter.setVisibility(View.VISIBLE);
@@ -180,20 +175,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else{
             play.soundWrongAnswer();
         }
-        buttons[12].setEnabled(false);
+//        buttons[12].setEnabled(false);
     }
 
 
 
     public void countDownDisplay(){
-        countDownTimer = new CountDownTimer(9000, 1000){
+        counter = 10;
+        textViewCounter.setTextColor(Color.WHITE);
+        operation.launchOperation();
+        textViewOperation.setText(operation.toString());
+
+        countDownTimer = new CountDownTimer(10000, 1000){
             public void onTick(long millisUntilFinished){
                 textViewCounter.setText(String.valueOf(counter--));
-                if (counter == 2){
+
+                if(counter == 8){
+                    textViewResult.setText("");
+                    textViewResult.setTextColor(Color.GRAY);
+                }
+
+                else if (counter == 2){
                     textViewCounter.setTextColor(Color.RED);
                 }
                 else if(counter == 0){
-                    buttons[12].setEnabled(false);
                     buttons[13].setEnabled(true);
                     validate = new Validate(Double.parseDouble("-10"), operation.operationResult());//-10 always will be a wrong answer
                     checkAnswer();
@@ -202,12 +207,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
             public  void onFinish(){
+                textViewCounter.setTextColor(Color.WHITE);
                 textViewCounter.setText("0");
+                operation.launchOperation();
+                textViewOperation.setText(operation.toString());
+                countDownDisplay();
             }
         }.start();
-
-            counter = 10;
-            textViewCounter.setTextColor(Color.WHITE);
 
     }
 

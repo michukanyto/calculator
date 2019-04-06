@@ -2,6 +2,7 @@ package com.appsmontreal.calc;
 
 import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.widget.TextView;
 
 public class Animate {
@@ -23,6 +24,7 @@ public class Animate {
         if(answer){
             textViewPoints.setText(Points.POINT.name());
             textViewPoints.setTextColor(Color.GREEN);
+            Log.i("----------","true answer");
         }else{
             textViewPoints.setText(Points.FAILURE.name());
             textViewPoints.setTextColor(Color.RED);
