@@ -18,6 +18,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import model.Answer;
+import model.FileResultsManagement;
 import model.RandomOperation;
 import model.Validate;
 
@@ -159,6 +160,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(myIntent);
                 break;
             case R.id.buttonSave:
+                FileResultsManagement.OpenResultFile(this,"results");
+//                FileResultsManagement.writeInResultFile(this);
                 Log.i("Save Button", ": you're here");
                 play.soundExit();
                 break;
