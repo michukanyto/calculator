@@ -1,25 +1,16 @@
 package com.appsmontreal.calc;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import model.Answer;
@@ -39,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Sound play;
     Animate animate;
     CountDownTimer countDownTimer;
+    FileResultsManagement fileResultsManagement;
     int counter;
     boolean activeButtonPlay;
     Button[] buttons = new Button[18];
@@ -73,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        buttons[12].setEnabled(false);
         counter = 10;
         activeButtonPlay = false;
+        fileResultsManagement = new FileResultsManagement(this);
     }
 
 
@@ -111,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonClear:
                 textViewResult.setText("");
 
-                Toast.makeText(this,FileResultsManagement.readFromFile(this),Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,fileResultsManagement.readFromResultFile(),Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.buttonDot: textViewResult.append(".");
@@ -168,9 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(myIntent);
                 break;
             case R.id.buttonSave:
-                FileResultsManagement.OpenResultFile(this,"CalcResults.txt");
-//                OpenResultFile("CalcResults.txt");
-//                FileResultsManagement.writeInResultFile(this);
+                fileResultsManagement.writeResultFile(answers);
                 Log.i("Save Button", ": you're here");
                 play.soundExit();
                 break;
@@ -231,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-//    public void OpenResultFile(String fileName){
+//    public void writeResultFile(String fileName){
 //        AssetManager assetManager = this.getResources().getAssets();
 //
 //        try {
