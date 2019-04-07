@@ -1,6 +1,8 @@
 package com.appsmontreal.calc;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
@@ -13,6 +15,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -105,6 +110,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.buttonClear:
                 textViewResult.setText("");
+
+                Toast.makeText(this,FileResultsManagement.readFromFile(this),Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.buttonDot: textViewResult.append(".");
             break;
@@ -160,7 +168,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(myIntent);
                 break;
             case R.id.buttonSave:
-                FileResultsManagement.OpenResultFile(this,"results");
+                FileResultsManagement.OpenResultFile(this,"CalcResults.txt");
+//                OpenResultFile("CalcResults.txt");
 //                FileResultsManagement.writeInResultFile(this);
                 Log.i("Save Button", ": you're here");
                 play.soundExit();
@@ -219,5 +228,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }.start();
 
     }
+
+
+
+//    public void OpenResultFile(String fileName){
+//        AssetManager assetManager = this.getResources().getAssets();
+//
+//        try {
+//            String path = MainActivity.this.getFilesDir().getAbsolutePath();
+//            File f = new File(getFilesDir(), fileName);
+//
+//
+//
+//
+//            File file = this.getFileStreamPath(fileName);
+//            FileWriter fileWriter = new FileWriter(file);
+//            fileWriter.write("hello\nword");
+//            Toast.makeText(this,"save to !" + f  ,Toast.LENGTH_SHORT).show(); //solution1
+//            fileWriter.close();
+//
+//
+////            FileOutputStream fileout = context.openFileOutput(fileName, context.MODE_PRIVATE);
+////            OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
+////            outputWriter.write("write this string to file.");
+////            outputWriter.close();//solution2
+//
+////            File path = context.getFilesDir();
+//
+////            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(fileName, Context.MODE_PRIVATE));
+////            outputStreamWriter.write("hello");
+////            Toast.makeText(context,"You're writing file : " + path,Toast.LENGTH_SHORT).show();
+////            outputStreamWriter.close();//solution 3
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
+//    }
+
+
+
+
+
 
 }
