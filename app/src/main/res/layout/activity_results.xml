@@ -63,17 +63,17 @@
 
     <Spinner
         android:id="@+id/spinnerResult"
-        android:layout_width="395dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="342dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:background="#ffffff"
         android:gravity="center_horizontal"
         android:spinnerMode="dialog"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/graph" />
 </android.support.constraint.ConstraintLayout>
