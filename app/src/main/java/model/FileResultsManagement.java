@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class FileResultsManagement {
 
     private Context context;
-    private final String FILENAME = "CalcResults.txt";
+    public static final String FILENAME = "CalcResults.txt";
 
     public FileResultsManagement(Context context) {
         this.context = context;

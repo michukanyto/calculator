@@ -21,6 +21,7 @@ import model.Validate;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String KEY = "OK";
     public final String STOPMESSAGE = "Calc Stopped!";
+    private final String KEYBOARDVALUES[] = {"0","1","2","3","4","5","6","7","8","9","",".","-"};
     TextView textViewResult;
     TextView textViewOperation;
     TextView textViewCounter;
@@ -75,38 +76,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch(v.getId()){
             case R.id.button0:
-                textViewResult.append("0");
+                textViewResult.append(KEYBOARDVALUES[0]);
                 break;
             case R.id.button1:
-                textViewResult.append("1");
+                textViewResult.append(KEYBOARDVALUES[1]);
                 break;
             case R.id.button2:
-                textViewResult.append("2");
+                textViewResult.append(KEYBOARDVALUES[2]);
                 break;
             case R.id.button3:
-                textViewResult.append("3");
+                textViewResult.append(KEYBOARDVALUES[3]);
                 break;
             case R.id.button4:
-                textViewResult.append("4"); break;
-            case R.id.button5: textViewResult.append("5");
+                textViewResult.append(KEYBOARDVALUES[4]); break;
+            case R.id.button5:
+                textViewResult.append(KEYBOARDVALUES[5]);
                 break;
             case R.id.button6:
-                textViewResult.append("6");
+                textViewResult.append(KEYBOARDVALUES[6]);
                 break;
             case R.id.button7:
-                textViewResult.append("7");
+                textViewResult.append(KEYBOARDVALUES[7]);
                 break;
             case R.id.button8:
-                textViewResult.append("8");
+                textViewResult.append(KEYBOARDVALUES[8]);
                 break;
             case R.id.button9:
-                textViewResult.append("9");
+                textViewResult.append(KEYBOARDVALUES[9]);
                 break;
             case R.id.buttonClear:
-                textViewResult.setText("");
+                textViewResult.setText(KEYBOARDVALUES[10]);
 //                Toast.makeText(this,fileResultsManagement.readFromResultFile(),Toast.LENGTH_LONG).show();
                 break;
-            case R.id.buttonDot: textViewResult.append(".");
+            case R.id.buttonDot: textViewResult.append(KEYBOARDVALUES[11]);
             break;
             case R.id.buttonEqual:
                 try {
@@ -145,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.buttonLess:
-                textViewResult.append("-");
+                textViewResult.append(KEYBOARDVALUES[12]);
                 break;
             case R.id.buttonQuit:
                 finish();
@@ -184,7 +186,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
     public void countDownDisplay(){
         counter = 10;
         textViewCounter.setTextColor(Color.WHITE);
@@ -195,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onTick(long millisUntilFinished){
                 textViewCounter.setText(String.valueOf(counter--));
 
-                if(counter == 8){
+                if(counter == 8){//8
                     textViewResult.setText("");
                     textViewResult.setTextColor(Color.GRAY);
                 }

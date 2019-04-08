@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.widget.EditText;
+import android.os.Environment;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appsmontreal.calc.ResultsActivity;
 import com.jjoe64.graphview.GraphView;
+
+import java.io.File;
 
 import model.FileResultsManagement;
 
@@ -29,12 +31,17 @@ public class Email  {
     }
 
     public void sendEmail(Activity caller){
+
+//        String fileName = FileResultsManagement.;
+        File fileLocation = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), FileResultsManagement.FILENAME);
+        Uri path = Uri.fromFile(fileLocation);
+
         Intent intentEmail = new Intent(Intent.ACTION_SENDTO);
         intentEmail.setType("message/rfc822");
         intentEmail.setData(Uri.parse("mailto:"));
         intentEmail.putExtra(Intent.EXTRA_EMAIL  , new String[]{"destination@gmail.com"});
         intentEmail.putExtra(Intent.EXTRA_SUBJECT, "Calculator Score");
-//        intentEmail.putExtra(Intent.)
+        intentEmail.putExtra(Intent.EXTRA_STREAM, path);
         intentEmail.putExtra(Intent.EXTRA_TEXT   , "CALCULATOR SCORE\n" +
                 "=======================\n" +
                 percentage.getText().toString() + "\n\n" +

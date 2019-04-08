@@ -30,11 +30,7 @@ public class Animate {
             textViewPoints.setTextColor(Color.RED);
         }
         textViewPoints.animate().rotationX(720).setDuration(2000);
-//        textViewPoints.animate().setListener(null);
-//        textViewPoints.getAnimation().cancel();
 
     }
-
-
 
 }
