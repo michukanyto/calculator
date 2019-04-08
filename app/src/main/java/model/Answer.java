@@ -49,9 +49,15 @@ public class Answer implements Serializable {
         this.seconds = seconds;
     }
 
+//    @Override
+//    public String toString() {
+//        return question + "\n" + answers.toString() + " : "+ point + "\n" + "Answer Time = " + seconds + "sec." + "\n\n";
+//
+//    }
+
     @Override
     public String toString() {
-        return question + "\n" + answers.toString() + " : "+ point + "\n" + "Answer Time = " + seconds + "sec." + "\n\n";
+        return question + ";" + answers.toString() + " : "+ point + ";" + "Answer Time = " + seconds + "sec." + "\n\n";
 
     }
 }

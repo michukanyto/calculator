@@ -17,11 +17,11 @@ public class Email  {
 
     private Context context;
     private TextView percentage;
-    private EditText answerResume;
+    private String answerResume;
     private GraphView graph;
 
 
-    public Email(Context context, TextView percentage, EditText answerResume, GraphView graph) {
+    public Email(Context context, TextView percentage, String answerResume, GraphView graph) {
         this.context = context;
         this.percentage = percentage;
         this.answerResume = answerResume;
@@ -38,7 +38,7 @@ public class Email  {
         intentEmail.putExtra(Intent.EXTRA_TEXT   , "CALCULATOR SCORE\n" +
                 "=======================\n" +
                 percentage.getText().toString() + "\n\n" +
-                answerResume.getText().toString() + "\n\n");
+                answerResume.toString() + "\n\n");
 
         try {
             caller.startActivity(Intent.createChooser(intentEmail, "Send mail..."));

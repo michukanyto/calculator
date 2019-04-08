@@ -6,8 +6,10 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,9 +33,10 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     Email email;
     Sound play;
     TextView textViewPercentage;
-    EditText editTextResult;
+    Spinner spinnerResult;
     Button buttonBack;
     Button buttonSend;
+    ArrayAdapter arrayAdapter;
 
 
     @Override
@@ -51,13 +54,15 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         buttonBack.setOnClickListener(this);
         buttonSend.setOnClickListener(this);
         textViewPercentage = (TextView) findViewById(R.id.textViewPercentage);
-        editTextResult = (EditText) findViewById(R.id.editTextResult);
+        spinnerResult = (Spinner) findViewById(R.id.spinnerResult);
         graph = (GraphView) findViewById(R.id.graph);
         result = new Result(answers);
+        arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,answers);
         printInfo();
         showGraph();
         play = new Sound(this);
-        email = new Email(this,textViewPercentage,editTextResult,graph);
+        email = new Email(this,textViewPercentage,answers.toString(),graph);
+
 
     }
 
@@ -66,7 +71,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         result.getScore();
         textViewPercentage.setText(result.toString());
 //        editTextResult.setText(result.getQuestionResume());
-        editTextResult.setText(result.getQuestionResume());
+        spinnerResult.setAdapter(arrayAdapter);
 
     }
 
