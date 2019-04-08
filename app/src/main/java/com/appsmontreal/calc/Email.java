@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,11 +32,12 @@ public class Email  {
     }
 
     public void sendEmail(Activity caller){
+        FileResultsManagement fileResultsManagement = new FileResultsManagement(context);
 
-//        String fileName = FileResultsManagement.;
+        String data = fileResultsManagement.readFromResultFile();
         File fileLocation = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), FileResultsManagement.FILENAME);
         Uri path = Uri.fromFile(fileLocation);
-
+        Log.i("------>", path.toString());
         Intent intentEmail = new Intent(Intent.ACTION_SENDTO);
         intentEmail.setType("message/rfc822");
         intentEmail.setData(Uri.parse("mailto:"));
@@ -45,7 +47,8 @@ public class Email  {
         intentEmail.putExtra(Intent.EXTRA_TEXT   , "CALCULATOR SCORE\n" +
                 "=======================\n" +
                 percentage.getText().toString() + "\n\n" +
-                answerResume.toString() + "\n\n");
+//                answerResume.toString() + "\n\n");
+                data + "\n\n");
 
         try {
             caller.startActivity(Intent.createChooser(intentEmail, "Send mail..."));

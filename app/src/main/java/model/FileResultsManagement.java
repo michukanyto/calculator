@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,18 +25,18 @@ public class FileResultsManagement {
     }
 
     public void writeResultFile(ArrayList<Answer> answers){
-
         try {
             File path = new File(context.getFilesDir(), FILENAME);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(FILENAME, Context.MODE_PRIVATE));
 
             for (Answer answer : answers){
                 outputStreamWriter.write(answer.toString());
-                outputStreamWriter.write("---------------------------");
+
+
             }
 
             Toast.makeText(context,"save in => " + path ,Toast.LENGTH_SHORT).show();
-            outputStreamWriter.close();//solution 3
+            outputStreamWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,6 +46,7 @@ public class FileResultsManagement {
 
     public String readFromResultFile() {
         String data = "";
+
         try {
             InputStream inputStream = context.openFileInput(FILENAME);
             if ( inputStream != null ) {
@@ -55,6 +57,7 @@ public class FileResultsManagement {
 
                 while ( (receiveString = bufferedReader.readLine()) != null ) {
                     stringBuilder.append(receiveString);
+                    stringBuilder.append("\n");
                 }
 
                 inputStream.close();
@@ -69,6 +72,21 @@ public class FileResultsManagement {
 
         return data;
     }
+
+
+
+//    FileOutputStream fOut = new FileOutputStream(myFile);
+//
+//    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fOut));
+//
+//  for (int i = 0; i < getdata.size(); i++) {
+//        bw.write(getdata.get(i));
+//        bw.newLine();
+//    }
+//
+//bw.close();
+//
+//fOut.close();
 
 
 
