@@ -11,12 +11,15 @@ import android.widget.Toast;
 import com.appsmontreal.calc.ResultsActivity;
 import com.jjoe64.graphview.GraphView;
 
+import model.FileResultsManagement;
+
 public class Email  {
 
     private Context context;
     private TextView percentage;
     private EditText answerResume;
     private GraphView graph;
+
 
     public Email(Context context, TextView percentage, EditText answerResume, GraphView graph) {
         this.context = context;
@@ -31,6 +34,7 @@ public class Email  {
         intentEmail.setData(Uri.parse("mailto:"));
         intentEmail.putExtra(Intent.EXTRA_EMAIL  , new String[]{"escobar.marlon@gmail.com"});
         intentEmail.putExtra(Intent.EXTRA_SUBJECT, "Calculator Score");
+//        intentEmail.putExtra(Intent.)
         intentEmail.putExtra(Intent.EXTRA_TEXT   , "CALCULATOR SCORE\n" +
                 "=======================\n" +
                 percentage.getText().toString() + "\n\n" +

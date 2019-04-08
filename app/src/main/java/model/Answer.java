@@ -51,7 +51,7 @@ public class Answer implements Serializable {
 
     @Override
     public String toString() {
-        return question + "\n " + answers.toString() + " : "+ point + "\n " + "Answer Time = " + seconds + "sec." + "\n\n";
+        return question + "\n" + answers.toString() + " : "+ point + "\n" + "Answer Time = " + seconds + "sec." + "\n\n";
 
     }
 }

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean activeButtonPlay;
     Button[] buttons = new Button[18];
     int buttonsWidgets[] = {R.id.button0,R.id.button1,R.id.button2,R.id.button3,R.id.button4,R.id.button5,R.id.button6,R.id.button7,R.id.button8,R.id.button9,
-                    R.id.buttonClear,R.id.buttonDot,R.id.buttonEqual,R.id.buttonPlay,R.id.buttonLess,R.id.buttonQuit,R.id.buttonResults,R.id.buttonSave};
+                    R.id.buttonLess,R.id.buttonDot,R.id.buttonEqual,R.id.buttonPlay,R.id.buttonClear,R.id.buttonQuit,R.id.buttonResults,R.id.buttonSave};
 
     public enum buttonPlayState{
         PLAY,
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         answers = new ArrayList<Answer>();
         play = new Sound(this);
 //        buttons[12].setEnabled(false);
+        buttons[17].setEnabled(false);//Save
         counter = 10;
         activeButtonPlay = false;
         fileResultsManagement = new FileResultsManagement(this);
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonClear:
                 textViewResult.setText("");
 
-                Toast.makeText(this,fileResultsManagement.readFromResultFile(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,fileResultsManagement.readFromResultFile(),Toast.LENGTH_LONG).show();
 
                 break;
             case R.id.buttonDot: textViewResult.append(".");
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try {
                     validate = new Validate(Double.parseDouble(textViewResult.getText().toString()), operation.operationResult());
                     checkAnswer();
-                    Toast.makeText(this, Boolean.toString(validate.validateOperation()) + "    " + operation.operationResult(), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this, Boolean.toString(validate.validateOperation()) + "    " + operation.operationResult(), Toast.LENGTH_LONG).show();
                     answers.add(new Answer(validate, operation.toString(), validate.validateOperation(),(9 - counter)));
 //                    buttons[13].setEnabled(true);
                     animate = new Animate(validate.validateOperation());
@@ -131,11 +132,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(activeButtonPlay){
                     buttons[13].setText(buttonPlayState.PLAY.name());
                     buttons[13].setTextColor(Color.GREEN);
+                    buttons[17].setEnabled(true);//Save
+                    textViewOperation.setText("Calc Stopped!");
+
                     activeButtonPlay = false;
                     countDownTimer.cancel();
+                    enableNumberButtons(false);
                 }else {
-//                    operation.launchOperation();
-//                    textViewOperation.setText(operation.toString());
                     textViewResult.setText("");
 //                    buttons[12].setEnabled(true);
 //                    buttons[13].setEnabled(false);
@@ -143,6 +146,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     textViewCounter.setVisibility(View.VISIBLE);
                     buttons[13].setText(buttonPlayState.STOP.name());
                     buttons[13].setTextColor(Color.RED);
+                    buttons[17].setEnabled(false);//Save
+                    enableNumberButtons(true);
                     countDownDisplay();
                     activeButtonPlay = true;
                 }
@@ -167,6 +172,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
              default:
                  break;
+        }
+    }
+
+
+    public void enableNumberButtons(boolean decision){
+        for(int x = 0; x < 12; x++){
+            buttons[x].setEnabled(decision);
         }
     }
 

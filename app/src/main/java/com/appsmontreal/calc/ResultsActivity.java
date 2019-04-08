@@ -21,6 +21,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import java.util.ArrayList;
 
 import model.Answer;
+import model.FileResultsManagement;
 import model.Result;
 
 public class ResultsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,6 +34,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     EditText editTextResult;
     Button buttonBack;
     Button buttonSend;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     private void printInfo() {
         result.getScore();
         textViewPercentage.setText(result.toString());
+//        editTextResult.setText(result.getQuestionResume());
         editTextResult.setText(result.getQuestionResume());
 
     }

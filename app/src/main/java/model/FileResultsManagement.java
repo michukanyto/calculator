@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,15 +26,14 @@ public class FileResultsManagement {
     public void writeResultFile(ArrayList<Answer> answers){
 
         try {
-
             File path = new File(context.getFilesDir(), FILENAME);
-
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(FILENAME, Context.MODE_PRIVATE));
 
             for (Answer answer : answers){
                 outputStreamWriter.write(answer.toString());
+                outputStreamWriter.write("---------------------------");
             }
-//            outputStreamWriter.write("hello World!!!");
+
             Toast.makeText(context,"save in => " + path ,Toast.LENGTH_LONG).show();
             outputStreamWriter.close();//solution 3
         } catch (IOException e) {
