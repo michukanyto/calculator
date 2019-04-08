@@ -20,6 +20,7 @@ import model.Validate;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String KEY = "OK";
+    public final String STOPMESSAGE = "Calc Stopped!";
     TextView textViewResult;
     TextView textViewOperation;
     TextView textViewCounter;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean activeButtonPlay;
     Button[] buttons = new Button[18];
     int buttonsWidgets[] = {R.id.button0,R.id.button1,R.id.button2,R.id.button3,R.id.button4,R.id.button5,R.id.button6,R.id.button7,R.id.button8,R.id.button9,
-                    R.id.buttonLess,R.id.buttonDot,R.id.buttonEqual,R.id.buttonPlay,R.id.buttonClear,R.id.buttonQuit,R.id.buttonResults,R.id.buttonSave};
+                    R.id.buttonLess,R.id.buttonDot,R.id.buttonEqual,R.id.buttonClear,R.id.buttonPlay,R.id.buttonQuit,R.id.buttonResults,R.id.buttonSave};
 
     public enum buttonPlayState{
         PLAY,
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewCounter = (TextView) findViewById(R.id.textViewCounter);
         answers = new ArrayList<Answer>();
         play = new Sound(this);
-//        buttons[12].setEnabled(false);
         buttons[17].setEnabled(false);//Save
         counter = 10;
         activeButtonPlay = false;
@@ -104,9 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.buttonClear:
                 textViewResult.setText("");
-
-                Toast.makeText(this,fileResultsManagement.readFromResultFile(),Toast.LENGTH_LONG).show();
-
+//                Toast.makeText(this,fileResultsManagement.readFromResultFile(),Toast.LENGTH_LONG).show();
                 break;
             case R.id.buttonDot: textViewResult.append(".");
             break;
@@ -114,9 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try {
                     validate = new Validate(Double.parseDouble(textViewResult.getText().toString()), operation.operationResult());
                     checkAnswer();
-//                    Toast.makeText(this, Boolean.toString(validate.validateOperation()) + "    " + operation.operationResult(), Toast.LENGTH_LONG).show();
                     answers.add(new Answer(validate, operation.toString(), validate.validateOperation(),(9 - counter)));
-//                    buttons[13].setEnabled(true);
                     animate = new Animate(validate.validateOperation());
                     animate.displayPoints(textViewResult);/////////message on display result
                     countDownTimer.cancel();
@@ -127,25 +123,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.buttonPlay:
-
-//                    buttons[13].setEnabled(false);
                 if(activeButtonPlay){
-                    buttons[13].setText(buttonPlayState.PLAY.name());
-                    buttons[13].setTextColor(Color.GREEN);
+                    buttons[14].setText(buttonPlayState.PLAY.name());
+                    buttons[14].setTextColor(Color.GREEN);
                     buttons[17].setEnabled(true);//Save
-                    textViewOperation.setText("Calc Stopped!");
+                    textViewOperation.setText(STOPMESSAGE);
 
                     activeButtonPlay = false;
                     countDownTimer.cancel();
                     enableNumberButtons(false);
                 }else {
                     textViewResult.setText("");
-//                    buttons[12].setEnabled(true);
-//                    buttons[13].setEnabled(false);
                     textViewResult.setTextColor(Color.GRAY);
                     textViewCounter.setVisibility(View.VISIBLE);
-                    buttons[13].setText(buttonPlayState.STOP.name());
-                    buttons[13].setTextColor(Color.RED);
+                    buttons[14].setText(buttonPlayState.STOP.name());
+                    buttons[14].setTextColor(Color.RED);
                     buttons[17].setEnabled(false);//Save
                     enableNumberButtons(true);
                     countDownDisplay();
@@ -167,8 +159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.buttonSave:
                 fileResultsManagement.writeResultFile(answers);
-                Log.i("Save Button", ": you're here");
-                play.soundExit();
+                play.soundSave();
                 break;
              default:
                  break;
@@ -177,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void enableNumberButtons(boolean decision){
-        for(int x = 0; x < 12; x++){
+        for(int x = 0; x < 14; x++){
             buttons[x].setEnabled(decision);
         }
     }
@@ -190,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else{
             play.soundWrongAnswer();
         }
-//        buttons[12].setEnabled(false);
     }
 
 
@@ -209,17 +199,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     textViewResult.setText("");
                     textViewResult.setTextColor(Color.GRAY);
                 }
-
                 else if (counter == 2){
                     textViewCounter.setTextColor(Color.RED);
                 }
                 else if(counter == 0){
-                    buttons[13].setEnabled(true);
+                    buttons[14].setEnabled(true);
                     validate = new Validate(Double.parseDouble("-10"), operation.operationResult());//-10 always will be a wrong answer
                     checkAnswer();
                     answers.add(new Answer(validate, operation.toString(), validate.validateOperation(),10));
                 }
-
             }
             public  void onFinish(){
                 textViewCounter.setTextColor(Color.WHITE);

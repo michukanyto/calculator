@@ -47,7 +47,13 @@ public class Sound {
     }
 
     public void stopSound(){
+
         mediaPlayer.stop();
+    }
+
+    public void soundSave(){
+        mediaPlayer = MediaPlayer.create(context,R.raw.save);
+        playSound(mediaPlayer);
     }
 
     private void playSound(MediaPlayer play){

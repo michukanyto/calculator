@@ -34,7 +34,7 @@ public class FileResultsManagement {
                 outputStreamWriter.write("---------------------------");
             }
 
-            Toast.makeText(context,"save in => " + path ,Toast.LENGTH_LONG).show();
+            Toast.makeText(context,"save in => " + path ,Toast.LENGTH_SHORT).show();
             outputStreamWriter.close();//solution 3
         } catch (IOException e) {
             e.printStackTrace();
