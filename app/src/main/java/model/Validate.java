@@ -29,7 +29,7 @@ public class Validate implements Serializable {
 
     @Override
     public String toString() {
-        return "Correct answer => " + machineResult + " ||\n" + "Your answer => " + userResult;
+        return "Answer => " + machineResult + " ||\n" + "Your answer => " + userResult;
 
     }
 }

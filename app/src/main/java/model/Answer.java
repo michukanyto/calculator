@@ -7,6 +7,7 @@ public class Answer implements Serializable {
     private String question;
     private boolean point;
     private int seconds;
+    private final String LINE = "\n-----------------------------------------------------------------\n";
 
 
     public Answer(Validate answers, String question, boolean point, int seconds) {
@@ -57,7 +58,7 @@ public class Answer implements Serializable {
 
     @Override
     public String toString() {
-        return question + " || " + answers.toString() + " : " + point + " || " + "Time = " + seconds + " sec." + "\n-----------------------------------------------------------------\n";
+        return question + "  ||  " + answers.toString() + " : " + point + "  ||  " + "Time = " + seconds + " Sec." + LINE;
 
     }
 }
