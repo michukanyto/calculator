@@ -13,6 +13,7 @@ import com.appsmontreal.calc.ResultsActivity;
 import com.jjoe64.graphview.GraphView;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import model.FileResultsManagement;
 
@@ -34,10 +35,9 @@ public class Email  {
     public void sendEmail(Activity caller){
         FileResultsManagement fileResultsManagement = new FileResultsManagement(context);
 
-        String data = fileResultsManagement.readFromResultFile();
+        ArrayList<String> data = fileResultsManagement.readFromResultFile();
         File fileLocation = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), FileResultsManagement.FILENAME);
         Uri path = Uri.fromFile(fileLocation);
-        Log.i("------>", path.toString());
         Intent intentEmail = new Intent(Intent.ACTION_SENDTO);
         intentEmail.setType("message/rfc822");
         intentEmail.setData(Uri.parse("mailto:"));

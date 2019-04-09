@@ -4,15 +4,14 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+
 
 
 public class FileResultsManagement {
@@ -31,8 +30,6 @@ public class FileResultsManagement {
 
             for (Answer answer : answers){
                 outputStreamWriter.write(answer.toString());
-
-
             }
 
             Toast.makeText(context,"save in => " + path ,Toast.LENGTH_SHORT).show();
@@ -42,10 +39,8 @@ public class FileResultsManagement {
         }
     }
 
-
-
-    public String readFromResultFile() {
-        String data = "";
+    public ArrayList<String> readFromResultFile() {
+        ArrayList<String> listOfAnswers = new ArrayList<>();
 
         try {
             InputStream inputStream = context.openFileInput(FILENAME);
@@ -53,15 +48,13 @@ public class FileResultsManagement {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
 
                 while ( (receiveString = bufferedReader.readLine()) != null ) {
-                    stringBuilder.append(receiveString);
-                    stringBuilder.append("\n");
+                    listOfAnswers.add(receiveString + "\n");
                 }
 
                 inputStream.close();
-                data = stringBuilder.toString();
+                bufferedReader.close();
             }
         }
         catch (FileNotFoundException e) {
@@ -70,24 +63,39 @@ public class FileResultsManagement {
             Log.e("Error : ", "Can not read file: " + e.toString());
         }
 
-        return data;
+        return listOfAnswers;
     }
 
-
-
-//    FileOutputStream fOut = new FileOutputStream(myFile);
+//    public String readFromResultFile() {
+//        String data = "";
 //
-//    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fOut));
+//        try {
+//            InputStream inputStream = context.openFileInput(FILENAME);
+//            if ( inputStream != null ) {
+//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//                String receiveString = "";
+//                StringBuilder stringBuilder = new StringBuilder();
 //
-//  for (int i = 0; i < getdata.size(); i++) {
-//        bw.write(getdata.get(i));
-//        bw.newLine();
+//                while ( (receiveString = bufferedReader.readLine()) != null ) {
+//                    stringBuilder.append(receiveString);
+//                    stringBuilder.append("\n\n");// to control break line in file
+//                }
+//
+//                inputStream.close();
+//                data = stringBuilder.toString();
+//            }
+//        }
+//        catch (FileNotFoundException e) {
+//            Log.e("Error : ", "File not found: " + e.toString());
+//        } catch (IOException e) {
+//            Log.e("Error : ", "Can not read file: " + e.toString());
+//        }
+//
+//        return data;
 //    }
-//
-//bw.close();
-//
-//fOut.close();
 
+//
 
 
 }

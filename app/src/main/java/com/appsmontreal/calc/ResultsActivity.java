@@ -37,6 +37,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     Button buttonBack;
     Button buttonSend;
     ArrayAdapter arrayAdapter;
+    FileResultsManagement fileResultsManagement;
+    ArrayList<String> listAnswers;
 
 
     @Override
@@ -57,7 +59,9 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         spinnerResult = (Spinner) findViewById(R.id.spinnerResult);
         graph = (GraphView) findViewById(R.id.graph);
         result = new Result(answers);
-        arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,answers);
+        fileResultsManagement = new FileResultsManagement(this);
+        listAnswers = fileResultsManagement.readFromResultFile();
+        arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,listAnswers);
         printInfo();
         showGraph();
         play = new Sound(this);
@@ -72,6 +76,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         textViewPercentage.setText(result.toString());
 //        editTextResult.setText(result.getQuestionResume());
         spinnerResult.setAdapter(arrayAdapter);
+//        Toast.makeText(this,data,Toast.LENGTH_LONG).show();
 
     }
 
