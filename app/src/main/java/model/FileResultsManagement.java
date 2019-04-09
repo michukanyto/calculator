@@ -26,7 +26,7 @@ public class FileResultsManagement {
     public void writeResultFile(ArrayList<Answer> answers){
         try {
             File path = new File(context.getFilesDir(), FILENAME);
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(FILENAME, Context.MODE_PRIVATE));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(FILENAME, Context.MODE_APPEND));
 
             for (Answer answer : answers){
                 outputStreamWriter.write(answer.toString());

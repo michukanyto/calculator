@@ -1,6 +1,5 @@
 package model;
 
-import android.util.Log;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -40,7 +39,6 @@ public class Result {
             }
         }
         percentageCorrectAnswer = ((double)correctAnswer / (double)answers.size()) * (double)100;
-        Log.i("Correct       :", Double.toString(percentageCorrectAnswer));
         percentageWrongAnswer = (double)100 - percentageCorrectAnswer;
     }
 
@@ -48,7 +46,7 @@ public class Result {
     @Override
     public String toString() {
         return "Correct Answers   =  " + df.format(percentageCorrectAnswer) + " %\n\n" +
-                "Wrong Answers   =  " + df.format(percentageWrongAnswer)+ " %";
+                "Wrong Answers   =  " + df.format(percentageWrongAnswer) + " %";
 
     }
 }
