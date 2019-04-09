@@ -22,14 +22,17 @@
 
     <TextView
         android:id="@+id/textViewPercentage"
-        android:layout_width="206dp"
-        android:layout_height="68dp"
+        android:layout_width="233dp"
+        android:layout_height="85dp"
         android:layout_marginStart="127dp"
-        android:layout_marginTop="149dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="127dp"
         android:text=""
         android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerResult" />
 
@@ -63,17 +66,15 @@
 
     <Spinner
         android:id="@+id/spinnerResult"
-        android:layout_width="342dp"
+        android:layout_width="350dp"
         android:layout_height="21dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="76dp"
         android:background="#ffffff"
         android:gravity="center_horizontal"
         android:spinnerMode="dialog"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/graph" />
 </android.support.constraint.ConstraintLayout>

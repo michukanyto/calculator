@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         answers = new ArrayList<Answer>();
         play = new Sound(this);
         buttons[17].setEnabled(false);//Save
+        buttons[16].setEnabled(false);
         counter = 10;
         activeButtonPlay = false;
         fileResultsManagement = new FileResultsManagement(this);
@@ -130,7 +131,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     buttons[14].setTextColor(Color.GREEN);
                     buttons[17].setEnabled(true);//Save
                     textViewOperation.setText(STOPMESSAGE);
-
                     activeButtonPlay = false;
                     countDownTimer.cancel();
                     enableNumberButtons(false);
@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonSave:
                 fileResultsManagement.writeResultFile(answers);
                 play.soundSave();
+                buttons[16].setEnabled(true);
                 break;
              default:
                  break;

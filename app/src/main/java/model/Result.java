@@ -33,15 +33,12 @@ public class Result {
     public void getScore(){
         for(int x = 0; x < answers.size();x++ ){
             questionResume += answers.get(x).toString();
-            Log.i("Answer was       :", Boolean.toString(answers.get(x).getPoint()));
             if (answers.get(x).getPoint()){
                 correctAnswer++;
             }else{
                 wrongAnswer++;
             }
         }
-        Log.i("Correct       :", Integer.toString(correctAnswer));
-        Log.i("array size       :", Integer.toString(answers.size()));
         percentageCorrectAnswer = ((double)correctAnswer / (double)answers.size()) * (double)100;
         Log.i("Correct       :", Double.toString(percentageCorrectAnswer));
         percentageWrongAnswer = (double)100 - percentageCorrectAnswer;
@@ -50,8 +47,8 @@ public class Result {
 
     @Override
     public String toString() {
-        return "correct Answers   =  " + df.format(percentageCorrectAnswer) + " %\n\n" +
-                "wrong Answers   =  " + df.format(percentageWrongAnswer)+ " %";
+        return "Correct Answers   =  " + df.format(percentageCorrectAnswer) + " %\n\n" +
+                "Wrong Answers   =  " + df.format(percentageWrongAnswer)+ " %";
 
     }
 }
