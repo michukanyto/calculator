@@ -66,37 +66,6 @@ public class FileResultsManagement {
         return listOfAnswers;
     }
 
-//    public String readFromResultFile() {
-//        String data = "";
-//
-//        try {
-//            InputStream inputStream = context.openFileInput(FILENAME);
-//            if ( inputStream != null ) {
-//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//                String receiveString = "";
-//                StringBuilder stringBuilder = new StringBuilder();
-//
-//                while ( (receiveString = bufferedReader.readLine()) != null ) {
-//                    stringBuilder.append(receiveString);
-//                    stringBuilder.append("\n\n");// to control break line in file
-//                }
-//
-//                inputStream.close();
-//                data = stringBuilder.toString();
-//            }
-//        }
-//        catch (FileNotFoundException e) {
-//            Log.e("Error : ", "File not found: " + e.toString());
-//        } catch (IOException e) {
-//            Log.e("Error : ", "Can not read file: " + e.toString());
-//        }
-//
-//        return data;
-//    }
-
-//
-
 
 }
 

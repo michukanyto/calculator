@@ -16,9 +16,6 @@ public class Result {
     private int elapsedTime = 0;
     private float speed = 0;
 
-//    public Result(ArrayList<Answer> answers) {
-//        this.answers = answers;
-//    }
 
     public Result() {
 
@@ -40,10 +37,7 @@ public class Result {
     }
 
     public void getScore(){
-//        for(int x = 0; x < answers.size();x++ ){
         for(int x = 0; x < Answer.listAnswers.size();x++ ){
-//            questionResume += answers.get(x).toString();
-//            questionResume += Answer.listAnswers.get(x).toString();
             elapsedTime += Answer.listAnswers.get(x).getSeconds();
             if (Answer.listAnswers.get(x).getPoint()){
                 correctAnswer++;

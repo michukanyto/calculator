@@ -1,18 +1,12 @@
 package com.appsmontreal.calc;
-
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
@@ -27,7 +21,6 @@ import model.FileResultsManagement;
 import model.Result;
 
 public class ResultsActivity extends AppCompatActivity implements View.OnClickListener {
-//    ArrayList<Answer> answers;
     Result result;
     GraphView graph;
     Email email;
@@ -45,7 +38,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-//        answers = (ArrayList<Answer>) getIntent().getExtras().getSerializable(MainActivity.KEY);
         initialize();
     }
 
@@ -58,7 +50,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         textViewPercentage = (TextView) findViewById(R.id.textViewPercentage);
         spinnerResult = (Spinner) findViewById(R.id.spinnerResult);
         graph = (GraphView) findViewById(R.id.graph);
-//        result = new Result(answers);
         result = new Result();
         fileResultsManagement = new FileResultsManagement(this);
         listAnswers = fileResultsManagement.readFromResultFile();
@@ -75,9 +66,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     private void printInfo() {
         result.getScore();
         textViewPercentage.setText(result.toString());
-//        editTextResult.setText(result.getQuestionResume());
         spinnerResult.setAdapter(arrayAdapter);
-//        Toast.makeText(this,data,Toast.LENGTH_LONG).show();
 
     }
 
@@ -115,7 +104,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 play.soundGoBack();
                 break;
             case R.id.buttonSend:
-//                sendEmail();
                 email.sendEmail(this);
                 play.soundGoForward();
                 break;
@@ -123,23 +111,4 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         }
 
     }
-
-//
-//    public void sendEmail(){
-//        Intent intentEmail = new Intent(Intent.ACTION_SENDTO);
-//        intentEmail.setType("message/rfc822");
-//        intentEmail.setData(Uri.parse("mailto:"));
-//        intentEmail.putExtra(Intent.EXTRA_EMAIL  , new String[]{""});
-//        intentEmail.putExtra(Intent.EXTRA_SUBJECT, "Calculator Score");
-//        intentEmail.putExtra(Intent.EXTRA_TEXT   , "CALCULATOR SCORE\n" +
-//                "=======================\n" +
-//                textViewPercentage.getText().toString() + "\n\n" +
-//                editTextResult.getText().toString() + "\n\n");
-//
-//        try {
-//            startActivity(Intent.createChooser(intentEmail, "Send mail..."));
-//        } catch (android.content.ActivityNotFoundException ex) {
-//            Toast.makeText(this, "Email service was not found in this phone.", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 }
