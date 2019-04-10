@@ -22,17 +22,18 @@
 
     <TextView
         android:id="@+id/textViewPercentage"
-        android:layout_width="233dp"
-        android:layout_height="85dp"
+        android:layout_width="284dp"
+        android:layout_height="251dp"
         android:layout_marginStart="127dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="127dp"
         android:text=""
+        android:textAlignment="center"
         android:textColor="#ffffff"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerResult" />
 
@@ -48,7 +49,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonSend"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPercentage" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPercentage"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/buttonSend"
@@ -62,19 +64,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonBack"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPercentage" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPercentage"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/spinnerResult"
         android:layout_width="350dp"
         android:layout_height="21dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="16dp"
         android:background="#ffffff"
         android:gravity="center_horizontal"
         android:spinnerMode="dialog"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/graph" />
 </android.support.constraint.ConstraintLayout>
