@@ -14,6 +14,7 @@ public class Result {
     private int totalSeconds = 0;
     private int totalDuration = 0;
     private int elapsedTime = 0;
+    private float speed = 0;
 
 //    public Result(ArrayList<Answer> answers) {
 //        this.answers = answers;
@@ -60,6 +61,7 @@ public class Result {
         percentageWrongAnswer = (double)100 - percentageCorrectAnswer;
 
         totalDuration = 10 * Answer.listAnswers.size();
+        speed = (float) elapsedTime / (float) totalDuration;
     }
 
 
@@ -71,7 +73,7 @@ public class Result {
                 "Elapsed time   =  " + elapsedTime + " Seconds\n" +
                 "Correct Answers   =  " + df.format(percentageCorrectAnswer) + " %\n" +
                 "Wrong Answers   =  " + df.format(percentageWrongAnswer) + " % \n" +
-                "Test time   =  " + elapsedTime / totalDuration + " Seconds";
+                "Answer Speed  =  " + speed + " Seconds";
 
     }
 }
