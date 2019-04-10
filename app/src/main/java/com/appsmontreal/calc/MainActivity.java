@@ -115,7 +115,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try {
                     validate = new Validate(Double.parseDouble(textViewResult.getText().toString()), operation.operationResult());
                     checkAnswer();
-                    answers.add(new Answer(validate, operation.toString(), validate.validateOperation(),(9 - counter)));
+//                    answers.add(new Answer(validate, operation.toString(), validate.validateOperation(),(9 - counter)));
+                    new Answer(validate, operation.toString(), validate.validateOperation(),(9 - counter));
                     animate = new Animate(validate.validateOperation());
                     animate.displayPoints(textViewResult);/////////message on display result
                     countDownTimer.cancel();
@@ -156,11 +157,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonResults:
                 play.soundGoForward();
                 myIntent = new Intent(this,ResultsActivity.class);
-                myIntent.putExtra(KEY,(ArrayList<Answer>) answers);
+//                myIntent.putExtra(KEY,(ArrayList<Answer>) answers);
                 startActivity(myIntent);
                 break;
             case R.id.buttonSave:
-                fileResultsManagement.writeResultFile(answers);
+//                fileResultsManagement.writeResultFile(answers);
+                fileResultsManagement.writeResultFile(Answer.listAnswers);
                 play.soundSave();
                 buttons[16].setEnabled(true);
                 break;

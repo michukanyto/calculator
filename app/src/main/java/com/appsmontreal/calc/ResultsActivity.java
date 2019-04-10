@@ -27,7 +27,7 @@ import model.FileResultsManagement;
 import model.Result;
 
 public class ResultsActivity extends AppCompatActivity implements View.OnClickListener {
-    ArrayList<Answer> answers;
+//    ArrayList<Answer> answers;
     Result result;
     GraphView graph;
     Email email;
@@ -45,7 +45,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-        answers = (ArrayList<Answer>) getIntent().getExtras().getSerializable(MainActivity.KEY);
+//        answers = (ArrayList<Answer>) getIntent().getExtras().getSerializable(MainActivity.KEY);
         initialize();
     }
 
@@ -66,7 +66,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         printInfo();
         showGraph();
         play = new Sound(this);
-        email = new Email(this,textViewPercentage,answers.toString(),graph);
+        email = new Email(this,textViewPercentage,Answer.listAnswers.toString(),graph);
 
 
     }
