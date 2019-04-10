@@ -58,7 +58,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         textViewPercentage = (TextView) findViewById(R.id.textViewPercentage);
         spinnerResult = (Spinner) findViewById(R.id.spinnerResult);
         graph = (GraphView) findViewById(R.id.graph);
-        result = new Result(answers);
+//        result = new Result(answers);
+        result = new Result();
         fileResultsManagement = new FileResultsManagement(this);
         listAnswers = fileResultsManagement.readFromResultFile();
         arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,listAnswers);

@@ -1,13 +1,15 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Answer implements Serializable {
     private Validate answers;
     private String question;
     private boolean point;
     private int seconds;
-    private final String LINE = "\n-----------------------------------------------------------------\n";
+    private final String LINE = "\n----------------------------------------------------------------\n";
+    public static ArrayList<Answer> listAnswers = new ArrayList<>();
 
 
     public Answer(Validate answers, String question, boolean point, int seconds) {
@@ -15,6 +17,7 @@ public class Answer implements Serializable {
         this.question = question;
         this.point = point;
         this.seconds = seconds;
+        listAnswers.add(this);
     }
 
 

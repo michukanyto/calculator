@@ -11,9 +11,14 @@ public class Result {
     private double percentageWrongAnswer = 0;
     private String questionResume = "";
 
-    public Result(ArrayList<Answer> answers) {
-        this.answers = answers;
+//    public Result(ArrayList<Answer> answers) {
+//        this.answers = answers;
+//    }
+
+    public Result() {
+
     }
+
     DecimalFormat df = new DecimalFormat("#.0");
 
 
@@ -30,15 +35,17 @@ public class Result {
     }
 
     public void getScore(){
-        for(int x = 0; x < answers.size();x++ ){
-            questionResume += answers.get(x).toString();
-            if (answers.get(x).getPoint()){
+//        for(int x = 0; x < answers.size();x++ ){
+        for(int x = 0; x < Answer.listAnswers.size();x++ ){
+//            questionResume += answers.get(x).toString();
+            questionResume += Answer.listAnswers.get(x).toString();
+            if (Answer.listAnswers.get(x).getPoint()){
                 correctAnswer++;
             }else{
                 wrongAnswer++;
             }
         }
-        percentageCorrectAnswer = ((double)correctAnswer / (double)answers.size()) * (double)100;
+        percentageCorrectAnswer = ((double)correctAnswer / (double)Answer.listAnswers.size()) * (double)100;
         percentageWrongAnswer = (double)100 - percentageCorrectAnswer;
     }
 
